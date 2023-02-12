@@ -1,0 +1,28 @@
+name: Deployment Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build and Deploy
+      run: |
+        # Your deployment command here
+        echo "Building and deploying..."
+
+    - name: Notify deployment status
+      uses: actions/github-script@0.9.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        script: |
+          # Notify your API about the deployment status
+          curl -X POST -d 'status=success' -d 'message=Deployment completed successfully' http://your-api.com/deployments
