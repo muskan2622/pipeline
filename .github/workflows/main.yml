@@ -18,7 +18,7 @@ jobs:
         echo "Building and deploying..."
 
     - name: Notify deployment status
-      uses: actions/github-script@0.9.0
+      uses: actions/github-script@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
